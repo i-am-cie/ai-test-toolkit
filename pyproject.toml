@@ -1,0 +1,84 @@
+[project]
+name = "ai-test-toolkit"
+version = "0.1.0"
+description = "Local AI-powered software testing toolkit: 6 offline Ollama tools covering requirement → review → API → SQL → E2E → perf"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+authors = [{name = "i-am-cie"}]
+keywords = ["testing", "ai", "ollama", "qa", "automation", "local-llm"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Software Development :: Testing",
+]
+
+dependencies = []
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+    "pytest-asyncio",
+    "ruff",
+    "mypy",
+]
+all = []
+
+[project.urls]
+Homepage = "https://github.com/i-am-cie/ai-test-toolkit"
+Repository = "https://github.com/i-am-cie/ai-test-toolkit"
+Issues = "https://github.com/i-am-cie/ai-test-toolkit/issues"
+
+[tool.uv.workspace]
+members = [
+    "packages/tlm-client",
+    "packages/prompt-templates",
+    "packages/ai-test-generator",
+    "packages/code-review-assistant",
+    "packages/api-test-assistant",
+    "packages/sql-test-assistant",
+    "packages/e2e-test-generator",
+    "packages/perf-test-assistant",
+    "packages/toolkit-portal",
+]
+
+[tool.uv.sources]
+tlm-client = {path = "packages/tlm-client", editable = true}
+prompt-templates = {path = "packages/prompt-templates", editable = true}
+ai-test-generator = {path = "packages/ai-test-generator", editable = true}
+code-review-assistant = {path = "packages/code-review-assistant", editable = true}
+api-test-assistant = {path = "packages/api-test-assistant", editable = true}
+sql-test-assistant = {path = "packages/sql-test-assistant", editable = true}
+e2e-test-generator = {path = "packages/e2e-test-generator", editable = true}
+perf-test-assistant = {path = "packages/perf-test-assistant", editable = true}
+toolkit-portal = {path = "packages/toolkit-portal", editable = true}
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = []
+
+[tool.ruff]
+target-version = "py310"
+line-length = 100
+select = ["E", "F", "I", "W", "UP", "B", "C4", "PTH", "T20"]
+ignore = ["E501", "T201"]
+fixable = ["F", "I", "W", "UP", "B", "C4"]
+
+[tool.mypy]
+python_version = "3.10"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = false
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests", "packages/*/tests"]
+python_files = ["test_*.py", "*_test.py"]
+python_functions = ["test_*"]

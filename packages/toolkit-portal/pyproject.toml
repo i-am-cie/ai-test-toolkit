@@ -1,0 +1,36 @@
+[project]
+name = "toolkit-portal"
+version = "0.1.0"
+description = "Unified web portal for AI Test Toolkit"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+dependencies = [
+    "flask>=3.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest", "pytest-asyncio", "httpx"]
+
+[project.scripts]
+toolkit-portal = "app:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.metadata]
+allow-direct-references = true
+
+[tool.uv.sources]
+tlm-client = {path = "../tlm-client", editable = true}
+prompt-templates = {path = "../prompt-templates", editable = true}
+ai-test-generator = {path = "../ai-test-generator", editable = true}
+code-review-assistant = {path = "../code-review-assistant", editable = true}
+api-test-assistant = {path = "../api-test-assistant", editable = true}
+sql-test-assistant = {path = "../sql-test-assistant", editable = true}
+e2e-test-generator = {path = "../e2e-test-generator", editable = true}
+perf-test-assistant = {path = "../perf-test-assistant", editable = true}
+
+[tool.hatch.build.targets.wheel]
+packages = ["toolkit_portal"]

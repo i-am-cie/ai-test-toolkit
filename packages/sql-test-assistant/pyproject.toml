@@ -1,0 +1,32 @@
+[project]
+name = "sql-test-assistant"
+version = "0.1.0"
+description = "Generate SQL test cases and review schemas using local Ollama"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+dependencies = [
+    "flask>=3.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest", "pytest-asyncio", "httpx"]
+cli = ["typer", "rich"]
+
+[project.scripts]
+sql-test-assistant = "app:main"
+sql-test-cli = "cli:app"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.metadata]
+allow-direct-references = true
+
+[tool.uv.sources]
+tlm-client = {path = "../tlm-client", editable = true}
+prompt-templates = {path = "../prompt-templates", editable = true}
+
+[tool.hatch.build.targets.wheel]
+packages = ["sql_test_assistant"]
