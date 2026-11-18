@@ -8,6 +8,8 @@
 [![Python 3.10+](https://img.shields.io/badge/Python-3.10%2B-blue.svg)](https://python.org)
 [![Ollama](https://img.shields.io/badge/Ollama-Local%20LLM-orange.svg)](https://ollama.ai)
 [![uv](https://img.shields.io/badge/uv-Workspace-purple.svg)](https://github.com/astral-sh/uv)
+![Stars](https://img.shields.io/github/stars/i-am-cie/ai-test-toolkit?style=social)
+![Forks](https://img.shields.io/github/forks/i-am-cie/ai-test-toolkit?style=social)
 
 ---
 
@@ -26,28 +28,44 @@
 
 ## 🏗️ Architecture
 
-```
-┌─────────────────────────────────────────────────────────────────┐
-│                      AI Test Toolkit (Monorepo)                 │
-├─────────────────────────────────────────────────────────────────┤
-│  ┌──────────────┐  ┌──────────────┐  ┌──────────────────────┐  │
-│  │  tlm-client  │  │prompt-templates│ │    toolkit-portal    │  │
-│  │  (Shared)    │  │  (Shared)    │  │    (Unified Portal)  │  │
-│  └──────┬───────┘  └──────┬───────┘  └──────────┬───────────┘  │
-│         │                 │                     │              │
-│         ▼                 ▼                     ▼              │
-│  ┌─────────────────────────────────────────────────────────┐   │
-│  │                    6 Independent Tools                   │   │
-│  │  ai-test-generator │ code-review │ api-test │ sql-test  │   │
-│  │  e2e-test-gen      │ perf-test                         │   │
-│  └─────────────────────────────────────────────────────────┘   │
-│                              │                                  │
-│                              ▼                                  │
-│                    ┌───────────────┐                           │
-│                    │   Ollama      │                           │
-│                    │   (qwen2.5:7b)│                           │
-│                    └───────────────┘                           │
-└─────────────────────────────────────────────────────────────────┘
+```mermaid
+graph TB
+    subgraph Root["uv workspace root"]
+        A["tlm-client<br/>(Ollama 统一客户端)"]
+        B["prompt-templates<br/>(6 领域 Prompt 库)"]
+    end
+    
+    subgraph Tools["6 个测试工具包"]
+        C1["ai-test-generator"]
+        C2["code-review-assistant"]
+        C3["api-test-assistant"]
+        C4["sql-test-assistant"]
+        C5["e2e-test-generator"]
+        C6["perf-test-assistant"]
+    end
+    
+    D["toolkit-portal<br/>(统一 Web UI)"]
+    
+    A --> C1
+    A --> C2
+    A --> C3
+    A --> C4
+    A --> C5
+    A --> C6
+    
+    B --> C1
+    B --> C2
+    B --> C3
+    B --> C4
+    B --> C5
+    B --> C6
+    
+    C1 --> D
+    C2 --> D
+    C3 --> D
+    C4 --> D
+    C5 --> D
+    C6 --> D
 ```
 
 **Shared Core:**
@@ -136,6 +154,32 @@ uv run code-review-cli review --mode security --file mycode.py
 ![CLI Demo](docs/cli-demo.gif)
 
 > **Note**: Screenshots and GIFs are placeholders. Run the tools locally to see them in action!
+
+---
+
+## 🎯 Showcase
+
+| Tool | Description | Key Features |
+|------|-------------|--------------|
+| 🧪 **ai-test-generator** | 代码/需求 → 高质量单测用例 | 单元测试、测试计划、边界分析、结构化用例 |
+| 🔍 **code-review-assistant** | 风格/安全/性能三维代码审查 | 安全审计、风格检查、性能分析 |
+| 🌐 **api-test-assistant** | 接口测试用例生成与自动运行 | 测试生成、执行、结果分析 |
+| 🗄️ **sql-test-assistant** | 数据校验、用例生成、Schema 评审 | 质量 SQL、测试用例、性能调优、Schema 评审 |
+| 🎭 **e2e-test-generator** | Selenium/Playwright E2E 脚本 | POM、CI/CD 配置、多浏览器支持 |
+| ⚡ **perf-test-assistant** | Locust/JMeter 压测脚本 | 执行计划、报告模板、基准对比 |
+
+**Tech Stack:**
+```
+uv workspace · Python 3.10+ · Ollama · Flask · 纯本地
+```
+
+**Quick Start:**
+```bash
+git clone https://github.com/i-am-cie/ai-test-toolkit
+cd ai-test-toolkit
+uv sync --all-extras
+uv run toolkit-portal  # Opens http://localhost:5006
+```
 
 ---
 
