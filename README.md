@@ -4,14 +4,28 @@
 
 ## 🧭 工具总览
 
-| 测试阶段 | 工具 | 端口 | 功能 |
-| --- | --- | --- | --- |
-| 需求分析 | [ai-test-generator](https://github.com/i-am-cie/ai-test-generator) | 5000 | 从需求/代码生成结构化测试用例，支持 JSON / CSV 导出 |
-| 代码审查 | [code-review-assistant](https://github.com/i-am-cie/code-review-assistant) | 5001 | 全面 / 安全 / 风格三种模式的本地代码审查 |
-| 接口测试 | [api-test-assistant](https://github.com/i-am-cie/api-test-assistant) | 5002 | 生成 API 测试用例、自动发送请求、AI 分析测试结果 |
-| 数据测试 | [sql-test-assistant](https://github.com/i-am-cie/sql-test-assistant) | 5003 | 数据质量检查 SQL、测试用例生成、表结构审查 |
-| UI 自动化 | [e2e-test-generator](https://github.com/i-am-cie/e2e-test-generator) | 5004 | 生成 Selenium / Playwright 端到端测试脚本 |
-| 性能测试 | [perf-test-assistant](https://github.com/i-am-cie/perf-test-assistant) | 5005 | 生成 Locust 脚本、测试策略设计、压测结果分析 |
+| 测试阶段 | 工具 | 端口 | 单元测试 | 功能 |
+| --- | --- | --- | --- | --- |
+| 需求分析 | [ai-test-generator](https://github.com/i-am-cie/ai-test-generator) | 5000 | 8 | 从需求/代码生成结构化测试用例，支持 JSON / CSV 导出 |
+| 代码审查 | [code-review-assistant](https://github.com/i-am-cie/code-review-assistant) | 5001 | 8 | 全面 / 安全 / 风格三种模式的本地代码审查 |
+| 接口测试 | [api-test-assistant](https://github.com/i-am-cie/api-test-assistant) | 5002 | 16 | 生成 API 测试用例、自动发送请求、AI 分析测试结果 |
+| 数据测试 | [sql-test-assistant](https://github.com/i-am-cie/sql-test-assistant) | 5003 | 9 | 数据质量检查 SQL、测试用例生成、表结构审查 |
+| UI 自动化 | [e2e-test-generator](https://github.com/i-am-cie/e2e-test-generator) | 5004 | 7 | 生成 Selenium / Playwright 端到端测试脚本 |
+| 性能测试 | [perf-test-assistant](https://github.com/i-am-cie/perf-test-assistant) | 5005 | 8 | 生成 Locust 脚本、测试策略设计、压测结果分析 |
+
+## ✅ 质量保障
+
+- **自带单元测试**：每个工具仓库都配有 pytest 用例，合计 **56 个**，覆盖 prompt 拼装、模型调用参数契约和命令行分发。
+- **测试不依赖模型服务**：测试中对 Ollama 调用全部打桩，本地运行测试无需启动 Ollama，也不连接数据库或第三方服务。
+- **CI 自动化**：每个仓库配置了 GitHub Actions 工作流（`.github/workflows/tests.yml`），推送到 `main` 或提交 PR 时自动安装 pytest 并运行全部用例。
+- **本地跑测试**：
+
+  ```bash
+  pip install -r requirements-dev.txt
+  pytest tests/ -v
+  ```
+
+> 说明：仓库自带的测试只校验工具自身的 prompt 拼装与分发逻辑，不解析生成出来的测试脚本，也不评估模型产出代码的质量。
 
 ## 🔗 导航页面
 
