@@ -35,6 +35,7 @@
         .stage { font-size: 0.78rem; padding: 4px 10px; border-radius: 6px; background: #0ea5e9; color: #0f172a; font-weight: 600; }
         .card h2 { font-size: 1.15rem; margin-bottom: 8px; }
         .card p { color: #94a3b8; font-size: 0.92rem; line-height: 1.6; flex: 1; }
+        .meta { margin-top: 10px; font-size: 0.8rem; color: #64748b; }
         .card-bottom { margin-top: 18px; display: flex; align-items: center; justify-content: space-between; }
         .port { font-family: 'Courier New', monospace; font-size: 0.85rem; color: #38bdf8; }
         .link { color: #38bdf8; text-decoration: none; font-size: 0.9rem; font-weight: 500; }
@@ -52,6 +53,8 @@
                 <span class="badge">Flask</span>
                 <span class="badge">Ollama</span>
                 <span class="badge">Fully Offline</span>
+                <span class="badge">56 pytest tests</span>
+                <span class="badge">GitHub Actions CI</span>
             </div>
         </header>
 
@@ -60,6 +63,7 @@
                 <div class="card-top"><span class="emoji">📋</span><span class="stage">需求分析</span></div>
                 <h2>ai-test-generator</h2>
                 <p>从需求描述或代码生成结构化测试用例，支持 JSON / CSV 导出。</p>
+                <div class="meta">🧪 8 个单元测试</div>
                 <div class="card-bottom"><span class="port">:5000</span><a class="link" href="https://github.com/i-am-cie/ai-test-generator">查看仓库 →</a></div>
             </div>
 
@@ -67,6 +71,7 @@
                 <div class="card-top"><span class="emoji">🔍</span><span class="stage">代码审查</span></div>
                 <h2>code-review-assistant</h2>
                 <p>全面、安全、风格三种模式的本地代码审查，给出改进建议。</p>
+                <div class="meta">🧪 8 个单元测试</div>
                 <div class="card-bottom"><span class="port">:5001</span><a class="link" href="https://github.com/i-am-cie/code-review-assistant">查看仓库 →</a></div>
             </div>
 
@@ -74,6 +79,7 @@
                 <div class="card-top"><span class="emoji">🔌</span><span class="stage">接口测试</span></div>
                 <h2>api-test-assistant</h2>
                 <p>生成 API 测试用例、自动发送请求，并用 AI 分析测试结果。</p>
+                <div class="meta">🧪 16 个单元测试</div>
                 <div class="card-bottom"><span class="port">:5002</span><a class="link" href="https://github.com/i-am-cie/api-test-assistant">查看仓库 →</a></div>
             </div>
 
@@ -81,6 +87,7 @@
                 <div class="card-top"><span class="emoji">🗄️</span><span class="stage">数据测试</span></div>
                 <h2>sql-test-assistant</h2>
                 <p>数据质量检查 SQL、测试用例生成与数据库表结构审查。</p>
+                <div class="meta">🧪 9 个单元测试</div>
                 <div class="card-bottom"><span class="port">:5003</span><a class="link" href="https://github.com/i-am-cie/sql-test-assistant">查看仓库 →</a></div>
             </div>
 
@@ -88,6 +95,7 @@
                 <div class="card-top"><span class="emoji">🤖</span><span class="stage">UI 自动化</span></div>
                 <h2>e2e-test-generator</h2>
                 <p>从页面描述生成 Selenium / Playwright 端到端测试脚本。</p>
+                <div class="meta">🧪 7 个单元测试</div>
                 <div class="card-bottom"><span class="port">:5004</span><a class="link" href="https://github.com/i-am-cie/e2e-test-generator">查看仓库 →</a></div>
             </div>
 
@@ -95,12 +103,14 @@
                 <div class="card-top"><span class="emoji">⚡</span><span class="stage">性能测试</span></div>
                 <h2>perf-test-assistant</h2>
                 <p>生成 Locust 压测脚本、设计测试策略并分析压测结果瓶颈。</p>
+                <div class="meta">🧪 8 个单元测试</div>
                 <div class="card-bottom"><span class="port">:5005</span><a class="link" href="https://github.com/i-am-cie/perf-test-assistant">查看仓库 →</a></div>
             </div>
         </div>
 
         <footer>
             <p>每个工具独立可用，也可按测试流程串联使用。所有推理均在本机 Ollama 完成，代码与测试数据不上传外部服务。</p>
+            <p>每个仓库自带 pytest 单元测试并接入 GitHub Actions，推送或提交 PR 时自动运行。</p>
         </footer>
     </div>
 </body>
